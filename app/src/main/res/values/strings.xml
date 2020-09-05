@@ -3,4 +3,6 @@
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="email">Email</string>
+    <string name="facebook_app_id">378397773151473</string>
+    <string name="fb_login_protocol_scheme">fb378397773151473</string>
 </resources>
