@@ -65,8 +65,12 @@ public class Login extends AppCompatActivity {
         activityLoginBinding.login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 String txt_email = email.getText().toString();
                 String txt_password = password.getText().toString();
+
+                sharedPreferences = getSharedPreferences("MyPREFER", Context.MODE_PRIVATE);
+
                 //Firebase auth in email
                 if (TextUtils.isEmpty(txt_email) || TextUtils.isEmpty(txt_password)){
 
@@ -86,8 +90,18 @@ public class Login extends AppCompatActivity {
                         }
                     });
                 }
+
+
+                String userDetails = sharedPreferences.getString(txt_email + txt_password +"data" ,"Email & password is Incorrect" );
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("display", userDetails);
+                editor.commit();
+                Intent intent = new Intent(Login.this,DisplayInfo.class);
+                startActivity(intent);
             }
         });
+
+
 
         activityLoginBinding.create.setOnClickListener(new View.OnClickListener() {
             @Override
