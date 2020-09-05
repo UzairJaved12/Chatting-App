@@ -32,7 +32,7 @@ public class OtpActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_otp);
-
+         //http://rajtech.tech/otp.php
         Auth = FirebaseAuth.getInstance();
 
         progressBar = findViewById(R.id.progressbar);
