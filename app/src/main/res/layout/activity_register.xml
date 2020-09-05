@@ -73,6 +73,16 @@
             android:textAllCaps="false"
             android:textColor="@color/white" />
 
+        <Button
+            android:id="@+id/Otp_button"
+            android:layout_width="127dp"
+            android:layout_height="37dp"
+            android:layout_marginTop="15dp"
+            android:background="@color/colorPrimary"
+            android:padding="4dp"
+            android:text="OTP"
+            android:textAllCaps="false"
+            android:textColor="@color/white" />
 
 
 
