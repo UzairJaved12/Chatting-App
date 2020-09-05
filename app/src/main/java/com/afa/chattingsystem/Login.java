@@ -5,8 +5,10 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -38,6 +40,8 @@ public class Login extends AppCompatActivity {
     FirebaseAuth auth;
     Dialog dialog;
     Button submit,cancel;
+    SharedPreferences sharedPreferences;
+
 
     boolean dailogstatus = false;
 
@@ -54,13 +58,16 @@ public class Login extends AppCompatActivity {
 
         email = (EditText) findViewById(R.id.login_email);
         password = (EditText) findViewById(R.id.login_password);
+        sharedPreferences = getSharedPreferences("MyPREFER", Context.MODE_PRIVATE);
+
+
 
         activityLoginBinding.login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String txt_email = email.getText().toString();
                 String txt_password = password.getText().toString();
-
+                //Firebase auth in email
                 if (TextUtils.isEmpty(txt_email) || TextUtils.isEmpty(txt_password)){
 
                     Toast.makeText(Login.this, "All fields are required", Toast.LENGTH_SHORT).show();
