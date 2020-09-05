@@ -19,6 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -41,6 +42,9 @@ public class Login extends AppCompatActivity {
     Dialog dialog;
     Button submit,cancel;
     SharedPreferences sharedPreferences;
+    public static String  PREFS_NAME="mypre";
+    public static String PREF_EMAIL="email";
+    public static String PREF_PASSWORD="password";
 
 
     boolean dailogstatus = false;
@@ -56,9 +60,11 @@ public class Login extends AppCompatActivity {
         setContentView(view);
         auth = FirebaseAuth.getInstance();
 
+
+
         email = (EditText) findViewById(R.id.login_email);
         password = (EditText) findViewById(R.id.login_password);
-        sharedPreferences = getSharedPreferences("MyPREFER", Context.MODE_PRIVATE);
+
         activityLoginBinding.OtpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,10 +78,20 @@ public class Login extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+
                 String txt_email = email.getText().toString();
                 String txt_password = password.getText().toString();
 
                 sharedPreferences = getSharedPreferences("MyPREFER", Context.MODE_PRIVATE);
+                String email = sharedPreferences.getString(PREF_EMAIL, null);
+                String password = sharedPreferences.getString(PREF_PASSWORD, null);
+
+                if (email != null || password != null) {
+                    //directly show logout form
+                    showLogout(email);
+                }
+
+
 
                 //Firebase auth in email
                 if (TextUtils.isEmpty(txt_email) || TextUtils.isEmpty(txt_password)){
@@ -96,16 +112,11 @@ public class Login extends AppCompatActivity {
                         }
                     });
                 }
-
-
-                String userDetails = sharedPreferences.getString(txt_email + txt_password +"data" ,"Email & password is Incorrect" );
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString("display", userDetails);
-                editor.commit();
-                Intent intent = new Intent(Login.this,DisplayInfo.class);
-                startActivity(intent);
+                doLogin();
             }
+
         });
+
 
 
 
@@ -173,15 +184,31 @@ public class Login extends AppCompatActivity {
             }
         });
 
-       /* dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
-            @Override
-            public void onCancel(DialogInterface dialog) {
-                dialog.cancel();
-                // do your stuff...
-            }
-        });*/
     }
 
+    public void onStart(){
+        super.onStart();
+        //read username and password from SharedPreferences
+    }
+    public void doLogin(){
+        EditText txt_email=(EditText)findViewById(R.id.login_email);
+        EditText txtpwd=(EditText)findViewById(R.id.login_password);
+        String email="myemail";
+        String password="mypassword";
+        if(txt_email.getText().toString().equals(email) && txtpwd.getText().toString().equals(password)){
+            CheckBox ch=(CheckBox)findViewById(R.id.ch_rememberme);
+            if(ch.isChecked())
+                rememberMe(email,password); //save username and password
+            //show logout activity
+            showLogout(email);
+
+        }
+        else{
+            Toast.makeText(this, "Invalid email or password",Toast.LENGTH_LONG).show();
+        }
+
+
+    }
     @Override
     public void onBackPressed() {
         if (dailogstatus){
@@ -190,5 +217,32 @@ public class Login extends AppCompatActivity {
         }else{
             super.onBackPressed();
         }
+    }
+
+    /*public void getUser(){
+        sharedPreferences = getSharedPreferences("MyPREFER", Context.MODE_PRIVATE);
+        String email = sharedPreferences.getString(PREF_EMAIL, null);
+        String password = sharedPreferences.getString(PREF_PASSWORD, null);
+
+        if (email != null || password != null) {
+            //directly show logout form
+            showLogout(email);
+        }
+    }*/
+
+    public void rememberMe(String user, String password){
+        //save username and password in SharedPreferences
+        getSharedPreferences(PREFS_NAME,MODE_PRIVATE)
+                .edit()
+                .putString(PREF_EMAIL,user)
+                .putString(PREF_PASSWORD,password)
+                .apply();
+    }
+
+    public void showLogout(String username){
+        //display log out activity
+        Intent intent=new Intent(this, Mainactivity.class);
+        intent.putExtra("user",username);
+        startActivity(intent);
     }
 }

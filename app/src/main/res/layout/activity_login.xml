@@ -20,8 +20,8 @@
 
    <LinearLayout
        android:id="@+id/linearLayout"
-       android:layout_width="409dp"
-       android:layout_height="398dp"
+       android:layout_width="399dp"
+       android:layout_height="443dp"
        android:gravity="center_horizontal"
        android:orientation="vertical"
        android:padding="16dp"
@@ -30,8 +30,6 @@
        app:layout_constraintStart_toStartOf="parent"
        app:layout_constraintTop_toTopOf="parent"
        app:layout_constraintVertical_bias="0.498">
-
-
 
 
       <com.google.android.material.textfield.TextInputEditText
@@ -54,6 +52,14 @@
           android:inputType="textPassword"
           android:padding="16dp" />
 
+      <CheckBox
+          android:id="@+id/ch_rememberme"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_gravity="left"
+          android:layout_marginLeft="10dp"
+          android:layout_marginRight="10dp"
+          android:text="Remember me" />
       <Button
           android:id="@+id/login"
           android:layout_width="273dp"
@@ -75,7 +81,6 @@
           tools:layout_editor_absoluteX="17dp"
           tools:layout_editor_absoluteY="411dp" />
 
-
       <Button
           android:id="@+id/create"
           android:layout_width="wrap_content"
@@ -83,8 +88,8 @@
           android:layout_gravity="center"
           android:layout_marginTop="10dp"
           android:background="@color/transparent"
-          android:text="Create"
-          />
+          android:text="Create" />
+
       <Button
           android:id="@+id/Otp_button"
           android:layout_width="wrap_content"
@@ -94,6 +99,7 @@
           android:background="@color/transparent"
           android:text="OTP"
           android:textColor="@color/black" />
+
 
 
    </LinearLayout>

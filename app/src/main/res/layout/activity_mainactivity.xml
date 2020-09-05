@@ -6,4 +6,24 @@
     android:layout_height="match_parent"
     tools:context=".Mainactivity">
 
+    <TextView
+        android:id="@+id/txtuser"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.346" />
+
+    <Button
+        android:id="@+id/btlogout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtuser"
+        android:onClick="logout"
+        android:text="Log out"
+        tools:layout_editor_absoluteX="161dp"
+        tools:layout_editor_absoluteY="299dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
