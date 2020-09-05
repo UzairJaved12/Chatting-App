@@ -54,9 +54,7 @@ public class Registartion extends AppCompatActivity {
                         String txt_email = email.getText().toString();
                         String txt_password = password.getText().toString();
 
-                        SharedPreferences.Editor editor = sharedPreferences.edit();
-                        editor.putString(txt_password +txt_email + txt_password + "data" ,  txt_username +"/n" + txt_email +"/n" + txt_password);
-                        editor.commit();
+
 
                         if (TextUtils.isEmpty(txt_username) || TextUtils.isEmpty(txt_email) || TextUtils.isEmpty(txt_password)) {
 
@@ -68,6 +66,9 @@ public class Registartion extends AppCompatActivity {
                             register(txt_username, txt_email, txt_password);
                         }
 
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putString(txt_username +txt_email + txt_password + "data" ,  txt_email +"/n" + txt_email);
+                        editor.commit();
 
                     }
                 });
