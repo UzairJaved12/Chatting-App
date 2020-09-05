@@ -79,17 +79,9 @@ public class Login extends AppCompatActivity {
             public void onClick(View v) {
 
 
+
                 String txt_email = email.getText().toString();
                 String txt_password = password.getText().toString();
-
-                sharedPreferences = getSharedPreferences("MyPREFER", Context.MODE_PRIVATE);
-                String email = sharedPreferences.getString(PREF_EMAIL, null);
-                String password = sharedPreferences.getString(PREF_PASSWORD, null);
-
-                if (email != null || password != null) {
-                    //directly show logout form
-                    showLogout(email);
-                }
 
 
 
@@ -112,7 +104,6 @@ public class Login extends AppCompatActivity {
                         }
                     });
                 }
-                doLogin();
             }
 
         });
@@ -188,6 +179,7 @@ public class Login extends AppCompatActivity {
 
     public void onStart(){
         super.onStart();
+        getUser();
         //read username and password from SharedPreferences
     }
     public void doLogin(){
@@ -219,7 +211,7 @@ public class Login extends AppCompatActivity {
         }
     }
 
-    /*public void getUser(){
+    public void getUser(){
         sharedPreferences = getSharedPreferences("MyPREFER", Context.MODE_PRIVATE);
         String email = sharedPreferences.getString(PREF_EMAIL, null);
         String password = sharedPreferences.getString(PREF_PASSWORD, null);
@@ -228,7 +220,7 @@ public class Login extends AppCompatActivity {
             //directly show logout form
             showLogout(email);
         }
-    }*/
+    }
 
     public void rememberMe(String user, String password){
         //save username and password in SharedPreferences

@@ -18,9 +18,7 @@ import com.afa.chattingsystem.databinding.ActivityMainactivityBinding;
 
 public class Mainactivity extends AppCompatActivity {
     public static String user = "user";
-    TextView txtuser;
     ActivityMainactivityBinding activityMainactivityBinding;
-    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
