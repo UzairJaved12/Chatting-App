@@ -59,7 +59,13 @@ public class Login extends AppCompatActivity {
         email = (EditText) findViewById(R.id.login_email);
         password = (EditText) findViewById(R.id.login_password);
         sharedPreferences = getSharedPreferences("MyPREFER", Context.MODE_PRIVATE);
-
+        activityLoginBinding.OtpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent =new Intent(Login.this,CreateOtp.class);
+                startActivity(intent);
+            }
+        });
 
 
         activityLoginBinding.login.setOnClickListener(new View.OnClickListener() {
