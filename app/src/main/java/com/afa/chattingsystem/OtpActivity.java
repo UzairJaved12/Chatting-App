@@ -120,6 +120,8 @@ public class OtpActivity extends AppCompatActivity {
             Toast.makeText(OtpActivity.this, e.getMessage(),Toast.LENGTH_LONG).show();
 
         }
+
     };
+
 }
 
