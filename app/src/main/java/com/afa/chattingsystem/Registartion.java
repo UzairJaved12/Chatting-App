@@ -42,13 +42,7 @@ public class Registartion extends AppCompatActivity {
         setContentView(view);
 
         auth = FirebaseAuth.getInstance();
-    activityRegisterBinding.OtpButton.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View v) {
-        Intent intent =new Intent(Registartion.this,CreateOtp.class);
-        startActivity(intent);
-    }
-});
+
 
 
         activityRegisterBinding.registerButton.setOnClickListener(new View.OnClickListener() {

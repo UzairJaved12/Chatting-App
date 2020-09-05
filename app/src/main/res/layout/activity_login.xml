@@ -84,8 +84,16 @@
           android:layout_marginTop="10dp"
           android:background="@color/transparent"
           android:text="Create"
-
           />
+      <Button
+          android:id="@+id/Otp_button"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_gravity="center"
+          android:layout_marginTop="10dp"
+          android:background="@color/transparent"
+          android:text="OTP"
+          android:textColor="@color/black" />
 
 
    </LinearLayout>
