@@ -45,6 +45,7 @@ public class Mainactivity extends AppCompatActivity {
     }
     public void onStart(){
         super.onStart();
+
         TextView view=(TextView)findViewById(R.id.txtuser);
         view.setText("Welcome "+user);
     }
