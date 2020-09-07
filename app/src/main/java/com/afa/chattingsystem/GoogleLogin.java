@@ -86,11 +86,9 @@ public class GoogleLogin extends AppCompatActivity {
             String name = account.getDisplayName();
             String email = account.getEmail();
             String google = account.getId();
-            String token = account.getIdToken();
             Log.d(TAG, name );
             Log.d(TAG, email );
             Log.d(TAG, google );
-            Log.d(TAG, token );
 
 
             Toast.makeText(this, "Sign", Toast.LENGTH_SHORT).show();
