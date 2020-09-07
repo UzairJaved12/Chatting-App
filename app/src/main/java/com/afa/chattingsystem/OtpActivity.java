@@ -54,22 +54,23 @@ public class OtpActivity extends BaseActivity {
         activityOtpBinding.buttonSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Snackbar("verify");
+
                 String code = activityOtpBinding.otpBox1.getText().toString().trim();
 
 
                 if ((code.isEmpty() || code.length() < 7)){
+
 /*
+                    activityOtpBinding.otpBox1.setError("Enter code...")
+                    activityOtpBinding.otpBox1.requestFocus();*/
+                 return;
 
-                    activityOtpBinding.otpBox1.setError("Enter code...");
-                    activityOtpBinding.otpBox1.requestFocus();
 
 
-*/
                 }
 
                 verifyCode(code);
-
+                Snackbar("verify");
             }
         });
     }
@@ -87,7 +88,7 @@ public class OtpActivity extends BaseActivity {
                         if (task.isSuccessful()) {
 
                             Intent intent = new Intent(OtpActivity.this, Mainactivity.class);
-                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
                             startActivity(intent);
 
@@ -137,15 +138,6 @@ public class OtpActivity extends BaseActivity {
         }
 
     };
-
-    public void statusbarTheme() {
-        //Change status bar color
-        if (Build.VERSION.SDK_INT >= 21) {
-            Window window = getWindow();
-            window.setStatusBarColor(ContextCompat.getColor(this, R.color.white));
-        }
-
-    }
 
 }
 
