@@ -27,6 +27,8 @@ public class Mainactivity extends AppCompatActivity {
     private static final String TAG = "Mainactivity";
     public static String user = "user";
     ActivityMainactivityBinding activityMainactivityBinding;
+    SharedPreferences mPrefs;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,9 +51,9 @@ public class Mainactivity extends AppCompatActivity {
         TextView view=(TextView)findViewById(R.id.txtuser);
         view.setText("Welcome "+user);
     }
-    public void logout() {
-        SharedPreferences sharedPrefs = getSharedPreferences(Login.PREFS_NAME, MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPrefs.edit();
+   public void logout() {
+       mPrefs=this.getSharedPreferences("PREF_NAME",Context.MODE_PRIVATE);
+       SharedPreferences.Editor editor = mPrefs.edit();
         editor.clear();
         editor.commit();
         user = "";

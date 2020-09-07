@@ -48,10 +48,8 @@ public class Login extends AppCompatActivity {
     FirebaseAuth auth;
     Dialog dialog;
     Button submit,cancel;
-    SharedPreferences sharedPreferences;
-    public static String  PREFS_NAME="mypre";
-    public static String PREF_EMAIL="email";
-    public static String PREF_PASSWORD="password";
+    String PREFS = "MyPrefs";
+    SharedPreferences mPrefs;
 
 
     boolean dailogstatus = false;
@@ -66,10 +64,17 @@ public class Login extends AppCompatActivity {
         View view = activityLoginBinding.getRoot();
         setContentView(view);
 
+        mPrefs = getSharedPreferences(PREFS, 0);
 
         auth = FirebaseAuth.getInstance();
 
+        mPrefs=this.getSharedPreferences("PREF_NAME",Context.MODE_PRIVATE);
 
+        if(mPrefs.getBoolean("firstTime", false))
+        {
+            startActivity(new Intent(this,Mainactivity.class));
+            finish();
+        }
 
 
 
@@ -100,8 +105,6 @@ public class Login extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-
-
                 String txt_email = activityLoginBinding.loginEmail.getText().toString();
                 String txt_password = activityLoginBinding.loginPassword.getText().toString();
 
@@ -125,7 +128,33 @@ public class Login extends AppCompatActivity {
                             }
                         }
                     });
+
+                boolean rememberMe = mPrefs.getBoolean("rememberMe", false);
+                if(rememberMe == true){
+                    //get previously stored login details
+                    String login = mPrefs.getString("login", null);
+                    String upass = mPrefs.getString("password", null);
+
+                    if(login != null && upass != null){
+                        //fill input boxes with stored login and pass
+                        EditText loginEbx = (EditText)findViewById(R.id.login_email);
+                        EditText passEbx = (EditText)findViewById(R.id.login_password);
+                        loginEbx.setText(login);
+                        passEbx.setText(upass);
+
+                        //set the check box to 'checked'
+                        CheckBox rememberMeCbx = (CheckBox)findViewById(R.id.remember);
+                        boolean isChecked = rememberMeCbx.isChecked();
+                        if(isChecked){
+                            saveLoginDetails();
+                        }else{
+                            removeLoginDetails();
+                        }
+                    }
                 }
+            }
+
+
             }
 
         });
@@ -199,30 +228,6 @@ public class Login extends AppCompatActivity {
 
     }
 
-    public void onStart(){
-        super.onStart();
-        getUser();
-        //read username and password from SharedPreferences
-    }
-    public void doLogin(){
-        EditText txt_email=(EditText)findViewById(R.id.login_email);
-        EditText txtpwd=(EditText)findViewById(R.id.login_password);
-        String email="myemail";
-        String password="mypassword";
-        if(txt_email.getText().toString().equals(email) && txtpwd.getText().toString().equals(password)){
-            CheckBox ch=(CheckBox)findViewById(R.id.ch_rememberme);
-            if(ch.isChecked())
-                rememberMe(email,password); //save username and password
-            //show logout activity
-            showLogout(email);
-
-        }
-        else{
-            Toast.makeText(this, "Invalid email or password",Toast.LENGTH_LONG).show();
-        }
-
-
-    }
     @Override
     public void onBackPressed() {
         if (dailogstatus){
@@ -231,9 +236,31 @@ public class Login extends AppCompatActivity {
         }else{
             super.onBackPressed();
         }
+
     }
 
-    public void getUser(){
+    private void saveLoginDetails(){
+        //fill input boxes with stored login and pass
+        EditText loginEbx = (EditText)findViewById(R.id.login_email);
+        EditText passEbx = (EditText)findViewById(R.id.login_password);
+        String login = loginEbx.getText().toString();
+        String upass = passEbx.getText().toString();
+
+        SharedPreferences.Editor e = mPrefs.edit();
+        e.putBoolean("rememberMe", true);
+        e.putString("login", login);
+        e.putString("password", upass);
+        e.commit();
+    }
+    private void removeLoginDetails(){
+        SharedPreferences.Editor e = mPrefs.edit();
+        e.putBoolean("rememberMe", false);
+        e.remove("login");
+        e.remove("password");
+        e.commit();
+    }
+
+  /*  public void getUser(){
         sharedPreferences = getSharedPreferences("MyPREFER", Context.MODE_PRIVATE);
         String email = sharedPreferences.getString(PREF_EMAIL, null);
         String password = sharedPreferences.getString(PREF_PASSWORD, null);
@@ -250,6 +277,7 @@ public class Login extends AppCompatActivity {
                 .edit()
                 .putString(PREF_EMAIL,user)
                 .putString(PREF_PASSWORD,password)
+                .putBoolean("simplelogin",true)
                 .apply();
     }
 
@@ -257,6 +285,5 @@ public class Login extends AppCompatActivity {
         //display log out activity
         Intent intent=new Intent(this, Mainactivity.class);
         intent.putExtra("user",username);
-        startActivity(intent);
+        startActivity(intent);*/
     }
-}

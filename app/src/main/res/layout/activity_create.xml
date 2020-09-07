@@ -6,6 +6,20 @@
     android:layout_height="match_parent"
     tools:context=".CreateOtp">
 
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=" Create OTP"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="53dp"
+        android:gravity="center_horizontal" />
+
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
@@ -33,6 +47,8 @@
             android:textColorHint="@android:color/black" />
 
     </LinearLayout>
+
+
 
     <Button
         android:id="@+id/buttonContinue"
