@@ -40,7 +40,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public class Login extends AppCompatActivity {
-    private static final String TAG = "v";
+    private static final String TAG = "Login";
 
     EditText email,password;
  ActivityLoginBinding activityLoginBinding;
@@ -147,8 +147,11 @@ public class Login extends AppCompatActivity {
                         boolean isChecked = rememberMeCbx.isChecked();
                         if(isChecked){
                             saveLoginDetails();
+                            Log.d(TAG, "onClick: "+isChecked);
+                            
                         }else{
                             removeLoginDetails();
+                            Log.d(TAG, "onClick: ");
                         }
                     }
                 }
