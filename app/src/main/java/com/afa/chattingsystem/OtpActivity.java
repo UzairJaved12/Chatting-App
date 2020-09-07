@@ -2,14 +2,19 @@ package com.afa.chattingsystem;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.afa.chattingsystem.databinding.ActivityFacebookLoginBinding;
+import com.afa.chattingsystem.databinding.ActivityOtpBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.TaskExecutors;
@@ -25,32 +30,34 @@ public class OtpActivity extends AppCompatActivity {
 
     private String verificationid;
     private FirebaseAuth Auth;
-    private ProgressBar progressBar;
-    private EditText editText;
+    ActivityOtpBinding activityOtpBinding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_otp);
-         //http://rajtech.tech/otp.php
-        Auth = FirebaseAuth.getInstance();
+        activityOtpBinding = ActivityOtpBinding.inflate(getLayoutInflater());
+        View view = activityOtpBinding.getRoot();
+        setContentView(view);
 
-        progressBar = findViewById(R.id.progressbar);
-        editText = findViewById(R.id.editTextCode);
+        statusbarTheme();
+
+        //http://rajtech.tech/otp.php
+        Auth = FirebaseAuth.getInstance();
 
         String phonenumber = getIntent().getStringExtra("phonenumber");
         sendVerificationCode(phonenumber);
 
-        findViewById(R.id.buttonSignIn).setOnClickListener(new View.OnClickListener() {
+        activityOtpBinding.buttonSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                String code = editText.getText().toString().trim();
+                String code = activityOtpBinding.otpBox1.getText().toString().trim();
 
-                if ((code.isEmpty() || code.length() < 6)){
 
-                    editText.setError("Enter code...");
-                    editText.requestFocus();
+                if ((code.isEmpty() || code.length() < 7)){
+
+                    /*activityOtpBinding.otpBox1.setError("Enter code...");
+                    activityOtpBinding.otpBox1.requestFocus();*/
                     return;
                 }
                 verifyCode(code);
@@ -72,7 +79,7 @@ public class OtpActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
 
                             Intent intent = new Intent(OtpActivity.this, Mainactivity.class);
-                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_NO_ANIMATION);
 
                             startActivity(intent);
 
@@ -109,7 +116,7 @@ public class OtpActivity extends AppCompatActivity {
         public void onVerificationCompleted(PhoneAuthCredential phoneAuthCredential) {
             String code = phoneAuthCredential.getSmsCode();
             if (code != null){
-                progressBar.setVisibility(View.VISIBLE);
+                activityOtpBinding.progressbar.setVisibility(View.VISIBLE);
                 verifyCode(code);
             }
         }
@@ -122,6 +129,15 @@ public class OtpActivity extends AppCompatActivity {
         }
 
     };
+
+    public void statusbarTheme() {
+        //Change status bar color
+        if (Build.VERSION.SDK_INT >= 21) {
+            Window window = getWindow();
+            window.setStatusBarColor(ContextCompat.getColor(this, R.color.white));
+        }
+
+    }
 
 }
 

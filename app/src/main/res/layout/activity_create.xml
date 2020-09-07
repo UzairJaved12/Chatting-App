@@ -41,7 +41,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="88dp"
-        android:background="#00e5ff"
+        android:background="@color/colorPrimary"
         android:text="Send OTP"
         android:textAllCaps="false"
         android:textColor="@android:color/background_light"

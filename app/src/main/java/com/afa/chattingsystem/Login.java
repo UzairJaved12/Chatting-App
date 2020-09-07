@@ -71,8 +71,7 @@ public class Login extends AppCompatActivity {
 
 
 
-        email = (EditText) findViewById(R.id.login_email);
-        password = (EditText) findViewById(R.id.login_password);
+
 
         activityLoginBinding.OtpButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,8 +102,8 @@ public class Login extends AppCompatActivity {
 
 
 
-                String txt_email = email.getText().toString();
-                String txt_password = password.getText().toString();
+                String txt_email = activityLoginBinding.loginEmail.getText().toString();
+                String txt_password = activityLoginBinding.loginPassword.getText().toString();
 
 
 
