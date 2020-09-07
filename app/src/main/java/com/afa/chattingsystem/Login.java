@@ -69,6 +69,7 @@ public class Login extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
 
         mPrefs=this.getSharedPreferences("PREF_NAME",Context.MODE_PRIVATE);
+/*
 
         if(mPrefs.getBoolean("firstTime", false))
         {
@@ -76,6 +77,7 @@ public class Login extends AppCompatActivity {
             finish();
         }
 
+*/
 
 
         activityLoginBinding.OtpButton.setOnClickListener(new View.OnClickListener() {

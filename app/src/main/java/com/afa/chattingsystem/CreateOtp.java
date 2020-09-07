@@ -23,16 +23,12 @@ public class CreateOtp extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        activityCreateBinding = ActivityCreateBinding.inflate(getLayoutInflater());
-        View view = activityCreateBinding.getRoot();
-        setContentView(view);
-        auth = FirebaseAuth.getInstance();
+        setContentView(R.layout.activity_create);
 
-
-
+        spinner = findViewById(R.id.spinnerCountries);
         spinner.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, CountryData.countryNames));
 
-
+        editText = findViewById(R.id.editTextPhone);
 
         findViewById(R.id.buttonContinue).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,8 +38,8 @@ public class CreateOtp extends AppCompatActivity {
                 String number = editText.getText().toString().trim();
 
                 if (number.isEmpty() || number.length() < 10) {
-                    activityCreateBinding.editTextPhone.setError("Valid number is required");
-                    activityCreateBinding.editTextPhone.requestFocus();
+                    editText.setError("Valid number is required");
+                    editText.requestFocus();
                     return;
                 }
 
@@ -63,12 +59,10 @@ public class CreateOtp extends AppCompatActivity {
         super.onStart();
 
         if (FirebaseAuth.getInstance().getCurrentUser() != null) {
-            Intent intent = new Intent(this, Mainactivity.class);
+            Intent intent = new Intent(this,Login.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
             startActivity(intent);
         }
     }
-
-
 }
