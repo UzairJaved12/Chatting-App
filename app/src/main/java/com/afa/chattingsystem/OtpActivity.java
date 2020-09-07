@@ -2,6 +2,7 @@ package com.afa.chattingsystem;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
@@ -18,6 +19,7 @@ import com.afa.chattingsystem.databinding.ActivityOtpBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.TaskExecutors;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -26,11 +28,13 @@ import com.google.firebase.auth.PhoneAuthProvider;
 
 import java.util.concurrent.TimeUnit;
 
-public class OtpActivity extends AppCompatActivity {
+public class OtpActivity extends BaseActivity {
 
     private String verificationid;
     private FirebaseAuth Auth;
     ActivityOtpBinding activityOtpBinding;
+    CoordinatorLayout coordinatorLayout;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,16 +54,20 @@ public class OtpActivity extends AppCompatActivity {
         activityOtpBinding.buttonSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Snackbar("verify");
                 String code = activityOtpBinding.otpBox1.getText().toString().trim();
 
 
                 if ((code.isEmpty() || code.length() < 7)){
+/*
 
-                    /*activityOtpBinding.otpBox1.setError("Enter code...");
-                    activityOtpBinding.otpBox1.requestFocus();*/
-                    return;
+                    activityOtpBinding.otpBox1.setError("Enter code...");
+                    activityOtpBinding.otpBox1.requestFocus();
+
+
+*/
                 }
+
                 verifyCode(code);
 
             }
