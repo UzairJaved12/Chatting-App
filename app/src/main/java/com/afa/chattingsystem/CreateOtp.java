@@ -26,7 +26,7 @@ public class CreateOtp extends AppCompatActivity {
 
 
         spinner = findViewById(R.id.spinnerCountries);
-        spinner.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, CountryData.countryNames));
+        spinner.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, CountryData.countryNames));
 
         editText = findViewById(R.id.editTextPhone);
 
