@@ -89,7 +89,7 @@ public class Login extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        activityLoginBinding.login.setOnClickListener(new View.OnClickListener() {
+        activityLoginBinding.loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
