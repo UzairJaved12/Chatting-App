@@ -89,6 +89,14 @@ public class Login extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        activityLoginBinding.btnGoogle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Login.this,GoogleLogin.class);
+                startActivity(intent);
+            }
+        });
         activityLoginBinding.loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

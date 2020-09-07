@@ -103,10 +103,10 @@
          <Button
              android:id="@+id/login_button"
              android:layout_width="match_parent"
-             android:layout_height="wrap_content"
+             android:layout_height="50dp"
+             android:text="Login"
              android:background="@color/colorPrimary"
              android:padding="4dp"
-             android:text="Login"
              android:textAllCaps="false"
              android:textColor="@color/white" />
 
@@ -127,6 +127,16 @@
              android:layout_gravity="center"
              android:background="@color/transparent"
              android:text="Facebook login"
+             android:textColor="@color/black"
+             tools:layout_editor_absoluteX="130dp"
+             tools:layout_editor_absoluteY="119dp" />
+         <Button
+             android:id="@+id/btn_google"
+             android:layout_width="150dp"
+             android:layout_height="54dp"
+             android:layout_gravity="center"
+             android:background="@color/transparent"
+             android:text="Google login"
              android:textColor="@color/black"
              tools:layout_editor_absoluteX="130dp"
              tools:layout_editor_absoluteY="119dp" />
