@@ -9,6 +9,8 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import com.afa.chattingsystem.databinding.ActivityCreateBinding;
+import com.afa.chattingsystem.databinding.ActivityOtpBinding;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class CreateOtp extends AppCompatActivity {
@@ -16,19 +18,21 @@ public class CreateOtp extends AppCompatActivity {
     private Spinner spinner;
     private EditText editText;
     FirebaseAuth auth;
-
+    ActivityCreateBinding activityCreateBinding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create);
+        activityCreateBinding = ActivityCreateBinding.inflate(getLayoutInflater());
+        View view = activityCreateBinding.getRoot();
+        setContentView(view);
         auth = FirebaseAuth.getInstance();
 
 
-        spinner = findViewById(R.id.spinnerCountries);
+
         spinner.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, CountryData.countryNames));
 
-        editText = findViewById(R.id.editTextPhone);
+
 
         findViewById(R.id.buttonContinue).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -38,8 +42,8 @@ public class CreateOtp extends AppCompatActivity {
                 String number = editText.getText().toString().trim();
 
                 if (number.isEmpty() || number.length() < 10) {
-                    editText.setError("Valid number is required");
-                    editText.requestFocus();
+                    activityCreateBinding.editTextPhone.setError("Valid number is required");
+                    activityCreateBinding.editTextPhone.requestFocus();
                     return;
                 }
 
