@@ -1,7 +1,7 @@
 package com.afa.chattingsystem;
 
 public class CountryData {
-    public static final String[] countryNames = {"Afghanistan", "Albania",
+    public static final String[] countryNames = {"Pakistan"};/*, "Albania",
             "Algeria", "Andorra", "Angola", "Antarctica", "Argentina",
             "Armenia", "Aruba", "Australia", "Austria", "Azerbaijan",
             "Bahrain", "Bangladesh", "Belarus", "Belgium", "Belize", "Benin",
@@ -44,9 +44,9 @@ public class CountryData {
             "United Arab Emirates", "Uganda", "United Kingdom", "Ukraine",
             "Uruguay", "United States", "Uzbekistan", "Vanuatu",
             "Holy See (vatican City State)", "Venezuela", "Viet Nam",
-            "Wallis And Futuna", "Yemen", "Zambia", "Zimbabwe"};
+            "Wallis And Futuna", "Yemen", "Zambia", "Zimbabwe"};*/
 
-    public static final String[] countryAreaCodes = {"93", "355", "213",
+    public static final String[] countryAreaCodes = {"92"};/* "355", "213",
             "376", "244", "672", "54", "374", "297", "61", "43", "994", "973",
             "880", "375", "32", "501", "229", "975", "591", "387", "267", "55",
             "673", "359", "226", "95", "257", "855", "237", "1", "238", "236",
@@ -67,5 +67,5 @@ public class CountryData {
             "82", "34", "94", "290", "508", "249", "597", "268", "46", "41",
             "963", "886", "992", "255", "66", "228", "690", "676", "216", "90",
             "993", "688", "971", "256", "44", "380", "598", "1", "998", "678",
-            "39", "58", "84", "681", "967", "260", "263"};
+            "39", "58", "84", "681", "967", "260", "263"*/
 }
