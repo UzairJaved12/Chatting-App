@@ -37,6 +37,7 @@ public class Mainactivity extends AppCompatActivity {
         View view = activityMainactivityBinding.getRoot();
         setContentView(view);
 
+
         activityMainactivityBinding.btlogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -45,21 +46,12 @@ public class Mainactivity extends AppCompatActivity {
         });
 
     }
-    public void onStart(){
-        super.onStart();
 
-        TextView view=(TextView)findViewById(R.id.txtuser);
-        view.setText("Welcome "+user);
-    }
    public void logout() {
-       mPrefs=this.getSharedPreferences("PREF_NAME",Context.MODE_PRIVATE);
-       SharedPreferences.Editor editor = mPrefs.edit();
-        editor.clear();
-        editor.commit();
-        user = "";
-        //show login form
         Intent intent = new Intent(this, Login.class);
         startActivity(intent);
+        finish();
+
 
 
 
